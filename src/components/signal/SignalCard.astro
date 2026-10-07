@@ -1,0 +1,24 @@
+---
+import type { Signal } from '~/data/signal-demo';
+interface Props {
+  signal: Signal;
+}
+const { signal: s } = Astro.props;
+---
+
+<article class="signal-card">
+  <div class="sport">
+    <span class="sport-symbol" aria-hidden="true"
+      >{s.sport === 'Football' ? '◎' : s.sport === 'Tennis' ? '◉' : '⊕'}</span
+    ><div><h3>{s.sport}</h3><p>{s.league}</p></div>
+  </div>
+  <h4>{s.event}</h4><p class="label">Market</p><p class="market">{s.market}</p>
+  <dl class="odds">
+    <div><dt>Odds</dt><dd>{s.odds.toFixed(2)}</dd></div><div>
+      <dt>Value</dt><dd class="positive">+{s.value.toFixed(1)}%</dd>
+    </div><div><dt>Stake</dt><dd>{s.stake.toFixed(1)}U</dd></div>
+  </dl>
+  <div class="card-bottom">
+    <span>↗ &nbsp; Signal #{s.id}</span><span class:list={['status', s.status]}>{s.status}</span>
+  </div>
+</article>
